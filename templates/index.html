@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programación Servidores Triunfantes - Corrector Automático</title>
+    <!-- ADDED: Favicon of a dove -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕊️</text></svg>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+        .fieldset-section {
+            border: 1px solid var(--bs-border-color);
+            border-radius: var(--bs-border-radius);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .fieldset-section legend {
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 0 0.5rem;
+            width: auto;
+            margin-bottom: 1rem;
+            float: none;
+        }
+        .btn i {
+            vertical-align: text-bottom;
+        }
+        #alertPlaceholder {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1060;
+            min-width: 300px;
+        }
+        .btn-spinner {
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body class="bg-body-tertiary">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <div class="card shadow-lg border-secondary">
+                    <div class="card-body p-4 p-md-5">
+                        <h1 class="h3 card-title text-center mb-4">🕊️ Programación – Servidores Triunfantes 🕊️</h1>
+
+                        <div id="alertPlaceholder"></div>
+
+                        <form id="programacionForm">
+                            <div class="mb-3">
+                                <label for="coordinacion" class="form-label">👥 Coordinación:</label>
+                                <input type="text" id="coordinacion" name="coordinacion" class="form-control correctable" required>
+                            </div>
+
+                            <!-- Intercessor 1 -->
+                            <div class="fieldset-section">
+                                <legend>🙏 Primer Clamor de Intercesión</legend>
+                                <div class="mb-3">
+                                    <label for="intercesor1" class="form-label">🙋‍♂️ Intercesor(a):</label>
+                                    <input type="text" id="intercesor1" name="intercesor1" class="form-control correctable" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="motivo1" class="form-label">🔥 Motivo:</label>
+                                    <textarea id="motivo1" name="motivo1" class="form-control correctable" rows="3" required></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Intercessor 2 -->
+                            <div class="fieldset-section">
+                                <legend>🙏 Segundo Clamor de Intercesión</legend>
+                                <div class="mb-3">
+                                    <label for="intercesor2" class="form-label">🙋‍♀️ Intercesor(a):</label>
+                                    <input type="text" id="intercesor2" name="intercesor2" class="form-control correctable" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="motivo2" class="form-label">🔥 Motivo:</label>
+                                    <textarea id="motivo2" name="motivo2" class="form-control correctable" rows="3" required></textarea>
+                                </div>
+                            </div>
+                            
+                            <!-- Intercessor 3 -->
+                            <div class="fieldset-section">
+                                <legend>🙏 Tercer Clamor de Intercesión</legend>
+                                <div class="mb-3">
+                                    <label for="intercesor3" class="form-label">🙋‍♂️ Intercesor(a):</label>
+                                    <input type="text" id="intercesor3" name="intercesor3" class="form-control correctable" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="motivo3" class="form-label">🔥 Motivo:</label>
+                                    <textarea id="motivo3" name="motivo3" class="form-control correctable" rows="3" required></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Intercessor 4 -->
+                            <div class="fieldset-section">
+                                <legend>🙏 Cuarto Clamor de Intercesión</legend>
+                                <div class="mb-3">
+                                    <label for="intercesor4" class="form-label">🙋‍♀️ Intercesor(a):</label>
+                                    <input type="text" id="intercesor4" name="intercesor4" class="form-control correctable" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="motivo4" class="form-label">🔥 Motivo:</label>
+                                    <textarea id="motivo4" name="motivo4" class="form-control correctable" rows="3" required></textarea>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="predicadora" class="form-label">🎤 Predicador(a):</label>
+                                <input type="text" id="predicadora" name="predicadora" class="form-control correctable" required>
+                            </div>
+
+                            <!-- REMOVED: WhatsApp number input field -->
+
+                            <!-- Action Buttons -->
+                            <div class="d-grid gap-3 mt-4">
+                                <button type="button" id="correctAllBtn" class="btn btn-primary btn-lg">
+                                    <span class="spinner-border spinner-border-sm btn-spinner d-none" role="status" aria-hidden="true"></span>
+                                    <i class="bi bi-magic"></i>
+                                    <span>Corregir Ortografía</span>
+                                </button>
+                                <button type="submit" class="btn btn-success btn-lg">
+                                    <i class="bi bi-whatsapp"></i> 
+                                    <span>Enviar por WhatsApp</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script>
+        const form = document.getElementById('programacionForm');
+        const alertPlaceholder = document.getElementById('alertPlaceholder');
+        const correctAllBtn = document.getElementById('correctAllBtn');
+        let alertTimeout;
+
+        const showAlert = (title, message, type = 'danger', duration = 5000) => {
+            clearTimeout(alertTimeout);
+            alertPlaceholder.innerHTML = '';
+            const wrapper = document.createElement('div');
+            wrapper.innerHTML = [
+                `<div class="alert alert-${type} alert-dismissible fade show" role="alert">`,
+                `   <strong>${title}</strong> ${message}`,
+                '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+                '</div>'
+            ].join('');
+            alertPlaceholder.append(wrapper);
+            if (duration > 0) {
+                alertTimeout = setTimeout(() => {
+                    const alertInstance = bootstrap.Alert.getOrCreateInstance(wrapper.firstChild);
+                    if (alertInstance) alertInstance.close();
+                }, duration);
+            }
+        };
+
+        const getCorrectionForText = async (text) => {
+            const history = [
+                { "role": "user", "parts": [{ "text": "Por favor, corrige la ortografía y gramática del siguiente texto. Responde únicamente con el texto corregido, sin añadir explicaciones adicionales ni comillas." }] },
+                { "role": "model", "parts": [{ "text": "Entendido. Enviaré solo el texto corregido." }] },
+                { "role": "user", "parts": [{ "text": text }] }
+            ];
+            
+            const response = await fetch('/correct', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ history })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || 'Error en la respuesta del servidor.');
+            }
+
+            const result = await response.json();
+            return result.response;
+        };
+
+        correctAllBtn.addEventListener('click', async () => {
+            const fieldsToCorrect = document.querySelectorAll('.correctable');
+            const correctionPromises = [];
+            
+            const spinner = correctAllBtn.querySelector('.spinner-border');
+            const buttonIcon = correctAllBtn.querySelector('.bi-magic');
+
+            spinner.classList.remove('d-none');
+            buttonIcon.classList.add('d-none');
+            correctAllBtn.disabled = true;
+
+            fieldsToCorrect.forEach(field => {
+                const text = field.value.trim();
+                if (text) {
+                    correctionPromises.push(getCorrectionForText(text));
+                } else {
+                    correctionPromises.push(Promise.resolve(""));
+                }
+            });
+
+            try {
+                const correctedTexts = await Promise.all(correctionPromises);
+
+                fieldsToCorrect.forEach((field, index) => {
+                    if (correctedTexts[index]) {
+                        field.value = correctedTexts[index];
+                    }
+                });
+
+                showAlert('¡Éxito!', 'Todos los campos han sido corregidos.', 'success');
+
+            } catch (error) {
+                console.error('Error during batch correction:', error);
+                showAlert('Error de IA', `No se pudieron corregir los textos. ${error.message}`, 'danger');
+            } finally {
+                spinner.classList.add('d-none');
+                buttonIcon.classList.remove('d-none');
+                correctAllBtn.disabled = false;
+            }
+        });
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const coordinacion = document.getElementById('coordinacion').value.trim();
+            const intercesor1 = document.getElementById('intercesor1').value.trim();
+            const motivo1 = document.getElementById('motivo1').value.trim();
+            const intercesor2 = document.getElementById('intercesor2').value.trim();
+            const motivo2 = document.getElementById('motivo2').value.trim();
+            const intercesor3 = document.getElementById('intercesor3').value.trim();
+            const motivo3 = document.getElementById('motivo3').value.trim();
+            const intercesor4 = document.getElementById('intercesor4').value.trim();
+            const motivo4 = document.getElementById('motivo4').value.trim();
+            const predicadora = document.getElementById('predicadora').value.trim();
+            
+            const fullWhatsappNumber = '573002291974';
+
+            let message = `🕊️ *\`Servidores Triunfantes\`* 🕊️\n-------------------------------------------------\n📋 *\`Programación\`*\n-------------------------------------------------
+👥 *_Coordinación_:* ${coordinacion}
+
+🙏 *\`Primer Clamor de Intercesión\`*
+🙋‍♂️ *_Intercesor(a)_:* ${intercesor1}
+🔥 *_Motivo_:* ${motivo1}
+
+🙏 *\`Segundo Clamor de Intercesión\`*
+🙋‍♀️ *_Intercesor(a)_:* ${intercesor2}
+🔥 *_Motivo_:* ${motivo2}
+
+🙏 *\`Tercer Clamor de Intercesión\`*
+🙋‍♂️ *_Intercesor(a)_:* ${intercesor3}
+🔥 *_Motivo_:* ${motivo3}
+
+🙏 *\`Cuarto Clamor de Intercesión\`*
+🙋‍♀️ *_Intercesor(a)_:* ${intercesor4}
+🔥 *_Motivo_:* ${motivo4}
+
+📖 *\`Mensaje de la Palabra\`*
+🎤 *_Predicador(a)_:* ${predicadora}`;
+
+            const schedule = `\n\n-------------------------------------------------\n⏰ *\`Horario\`*
+-------------------------------------------------
+🕔 05:00 a 05:05 – *lectura bíblica*
+🙏 05:05 a 05:10 – *Primer clamor*
+🙏 05:10 a 05:15 – *Segundo clamor*
+🙏 05:15 a 05:20 – *Tercer clamor*
+🙏 05:20 a 05:25 – *Cuarto clamor*
+📖 05:25 a 05:55 – *Mensaje*
+🙌 05:55 a 06:00 – *Oración por peticiones*`;
+
+            message += schedule;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/${fullWhatsappNumber}?text=${encodedMessage}`;
+            window.open(whatsappURL, '_blank');
+        });
+    </script>
+
+</body>
+</html>
